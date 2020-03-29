@@ -1,0 +1,60 @@
+float temperature <-- _TEMPRATURE
+float humidity <-- _HUMIDITY
+int soundLevel <-- _SOUND
+string a <-- "Hava Soguk"
+string b <-- "Hava Sicak"
+string c <-- "Hava ortalama"
+
+
+if temperature < 10 [
+>> a
+] 
+else [
+>> c
+]
+
+for int b <-- 0 | b < 10 | b++ [
+	if b = 0 [
+	        >> time()
+	]
+	else [
+	        >> "Antibiotic is still running great"
+	]
+]
+
+
+int switchNumber <-- 0
+while  temperature > 10 && humidity > 5 && sound > 20 [
+	>> "It is so boring inside"
+	if switchNumber < 10 [
+		switchNumber <-- switchNumber + 1
+	]
+	switch 5 <-- false 
+]
+
+
+connection <--  connect('http://www.cs.bilkent.edu.tr/guvenir/')
+send(connection, 100)
+
+function calculateAvarage (int note1, int note2, int note3, int note4)(float average)[
+	int total <-- note1 + note2 + note3 + note4
+	average <-- total / 4
+]
+
+int projectNote1 <--  receive('http://www.cs.bilkent.edu.tr/guvenir/notes/21502960')
+int projectNote2 <--  receive('http://www.cs.bilkent.edu.tr/guvenir/notes/21502360')
+int projectNote3 <--  receive('http://www.cs.bilkent.edu.tr/guvenir/notes/21505460')
+int projectNote4 <-- receive('http://www.cs.bilkent.edu.tr/guvenir/notes/21501260')
+
+
+float average <-- calculateAvarage(quizNote1, quizNote2, quizNote3, quizNote4)()
+
+if projectNote1 < average [
+	>> "My note is below the project avarage"
+] 
+else [
+	>> "THANKS FOR MY NEW NOTE"
+]
+
+
+
